@@ -11,11 +11,11 @@ const App = () => {
 
   const [character, setCharacter] = useState(TeamData);
 
-  const addCharacter = char => { setCharacter([... character, char])};
+  const addCharacter = char => { setCharacter([...character, char])};
 
   return (
     <div className="App">
-    <h1> Rick and Morty Character </h1>
+    <h1> Rick and Morty Characters </h1>
     <Form addCharacter={addCharacter} />
     <TeamCard character={character} />
     </div>

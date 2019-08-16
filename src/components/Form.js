@@ -5,20 +5,27 @@ const Form = (props) => {
 
   console.log(props);
 
-  const [char, setChar] = useState ([]);
+  const [char, setChar] = useState ({id: "", name: "", status: "", species: "", gender: "", origin: "", location: "", created: ""});
 
-  const changeHandler = e => {
+  const changeHandler = event => {
 
-    setChar([]);
+    setChar({...char, [event.target.name]: event.target.value});
   }
 
-  const submitForm = e => {
-    e.preventDefault();
+  const submitForm = event => {
+    event.preventDefault();
 
+    const newChar = {
+      ...char,
+      id: Date.now()
+
+    };
+
+    props.addCharacter(newChar);
   }
 
   return (
-    <form>
+    <form onSubmit={submitForm}>
       <label htmlFor="id"> Character # </label>
       <input
         type="text"
@@ -39,15 +46,7 @@ const Form = (props) => {
 
       />
 
-      <label htmlFor="image"> image</label>
-      <input
-        type="image"
-        name="image"
-        placeholder="Photo"
-        src={char.image}
-        onChange= {changeHandler}
-
-      />
+    
 
       <label htmlFor="status"> Status </label>
       <input
@@ -113,7 +112,7 @@ const Form = (props) => {
 
       />
 
-
+      <button type="submit"> Add Character </button>
 
     </form>
   )
