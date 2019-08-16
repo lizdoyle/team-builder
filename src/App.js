@@ -1,27 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import {Route} from 'react-router-dom';
+import React, {useState} from 'react';
 import './App.css';
 
-function App() {
+import Form from './components/Form';
+import TeamCard from './components/TeamCard';
+
+
+import TeamData from './components/TeamData';
+
+const App = () => {
+
+  const [character, setCharacter] = useState(TeamData);
+
+  const addCharacter = char => { setCharacter([... character, char])};
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <h1> Rick and Morty Character </h1>
+    <Form addCharacter={addCharacter} />
+    <TeamCard character={character} />
     </div>
   );
-}
+};
 
 export default App;
